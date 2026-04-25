@@ -35,36 +35,26 @@ CREATE TABLE IF NOT EXISTS election_events (
 );
 
 -- ============================================================
--- 2. CIVIC CONCEPTS
--- Educational content: What is Lok Sabha? What is an EVM?
--- Also handles Rajya Sabha misconception
+-- 2. KNOWLEDGE BASE
+-- Unified table for all educational content:
+-- election types, terminology, abbreviations, civic concepts
+-- Replaces separate glossary + civic_concepts tables
 -- ============================================================
-CREATE TABLE IF NOT EXISTS civic_concepts (
+CREATE TABLE IF NOT EXISTS knowledge_base (
   id                SERIAL PRIMARY KEY,
-  concept_key       VARCHAR(100) UNIQUE NOT NULL,    -- e.g. 'lok_sabha', 'rajya_sabha', 'evm'
+  concept_key       VARCHAR(100) UNIQUE NOT NULL,    -- e.g. 'lok_sabha', 'evm', 'nota'
   title             VARCHAR(255) NOT NULL,
-  short_description TEXT NOT NULL,                   -- 1-2 sentences (for quick answer)
+  abbreviation      VARCHAR(50),                     -- e.g. 'EVM', 'VVPAT' (NULL if not an acronym)
+  full_form         VARCHAR(255),                    -- e.g. 'Electronic Voting Machine'
+  short_description TEXT NOT NULL,                   -- 1-2 sentences for quick answers
   full_explanation  TEXT NOT NULL,                   -- Detailed explanation
-  can_citizens_vote BOOLEAN,                         -- NULL = not applicable, TRUE/FALSE for election types
+  example           TEXT,                            -- Optional usage example
+  can_citizens_vote BOOLEAN,                         -- TRUE/FALSE for election types, NULL otherwise
   category          VARCHAR(50) NOT NULL CHECK (category IN (
                       'election_type', 'voting_process', 'terminology', 'rights', 'bodies'
                     )),
   source_url        VARCHAR(500),
   created_at        TIMESTAMP DEFAULT NOW()
-);
-
--- ============================================================
--- 3. GLOSSARY
--- Abbreviations & terms: EVM, VVPAT, NOTA, EPIC, BLO, etc.
--- ============================================================
-CREATE TABLE IF NOT EXISTS glossary (
-  id          SERIAL PRIMARY KEY,
-  term        VARCHAR(100) UNIQUE NOT NULL,
-  full_form   VARCHAR(255),
-  definition  TEXT NOT NULL,
-  example     TEXT,
-  source_url  VARCHAR(500),
-  created_at  TIMESTAMP DEFAULT NOW()
 );
 
 -- ============================================================
@@ -143,5 +133,7 @@ CREATE INDEX IF NOT EXISTS idx_election_events_type    ON election_events(electi
 CREATE INDEX IF NOT EXISTS idx_election_events_state   ON election_events(state);
 CREATE INDEX IF NOT EXISTS idx_election_events_active  ON election_events(is_active);
 CREATE INDEX IF NOT EXISTS idx_faqs_category           ON faqs(category);
-CREATE INDEX IF NOT EXISTS idx_civic_concepts_key      ON civic_concepts(concept_key);
+CREATE INDEX IF NOT EXISTS idx_knowledge_base_key      ON knowledge_base(concept_key);
+CREATE INDEX IF NOT EXISTS idx_knowledge_base_category ON knowledge_base(category);
+CREATE INDEX IF NOT EXISTS idx_knowledge_base_abbrev   ON knowledge_base(abbreviation);
 CREATE INDEX IF NOT EXISTS idx_forms_guide_type        ON forms_guide(form_type);

@@ -6,102 +6,142 @@
 -- ============================================================
 
 -- ============================================================
--- CIVIC CONCEPTS
+-- KNOWLEDGE BASE (merged civic concepts + glossary)
 -- ============================================================
-INSERT INTO civic_concepts (concept_key, title, short_description, full_explanation, can_citizens_vote, category, source_url) VALUES
+INSERT INTO knowledge_base (concept_key, title, abbreviation, full_form, short_description, full_explanation, example, can_citizens_vote, category, source_url) VALUES
 
-('lok_sabha', 'Lok Sabha (House of the People)',
+-- Election Types
+('lok_sabha', 'Lok Sabha (House of the People)', NULL, NULL,
   'The lower house of India''s Parliament. Citizens directly vote to elect Members of Parliament (MPs).',
   'The Lok Sabha is the lower house of the Parliament of India. It consists of 543 elected seats. Citizens aged 18 and above who are registered voters can directly vote for their Member of Parliament (MP) from their constituency. Elections are held every 5 years unless dissolved earlier. The party or coalition with a majority forms the government.',
+  'In the 2024 Lok Sabha election, voters across India chose 543 MPs.',
   TRUE, 'election_type', 'https://eci.gov.in'),
 
-('vidhan_sabha', 'Vidhan Sabha (State Legislative Assembly)',
+('vidhan_sabha', 'Vidhan Sabha (State Legislative Assembly)', NULL, NULL,
   'The state-level legislature. Citizens directly vote to elect Members of the Legislative Assembly (MLAs).',
   'The Vidhan Sabha is the lower house of a state legislature in India. Citizens who are registered voters in a state can directly vote for their Member of the Legislative Assembly (MLA) from their Assembly Constituency. State elections are held every 5 years. The MLA represents your local area at the state level.',
+  'Maharashtra has 288 Vidhan Sabha seats. Citizens vote for their local MLA.',
   TRUE, 'election_type', 'https://eci.gov.in'),
 
-('rajya_sabha', 'Rajya Sabha (Council of States)',
+('rajya_sabha', 'Rajya Sabha (Council of States)', NULL, NULL,
   'The upper house of Parliament. Citizens do NOT directly vote in Rajya Sabha elections.',
   'The Rajya Sabha is the upper house of the Parliament of India. It is a permanent body and is not subject to dissolution. IMPORTANT: Citizens do not directly vote for Rajya Sabha members. Rajya Sabha members are elected by the elected members of State Legislative Assemblies (MLAs) and Union Territories through a system of proportional representation. As a voter, you cannot cast your ballot in a Rajya Sabha election.',
+  'Your MLA votes to elect Rajya Sabha members — you do not.',
   FALSE, 'election_type', 'https://eci.gov.in'),
 
-('local_body', 'Local Body Elections',
+('local_body', 'Local Body Elections', NULL, NULL,
   'Municipal and Panchayat elections. Citizens vote for local representatives like councillors and ward members.',
   'Local body elections include Municipal Corporation elections (for urban areas) and Gram Panchayat / Panchayat Samiti elections (for rural areas). Citizens vote directly for their local ward councillor, sarpanch, or gram panchayat member. These elections are conducted by the State Election Commission (not the Election Commission of India) and are held separately from Lok Sabha and Vidhan Sabha elections.',
+  'In a Municipal Corporation election, you vote for your local ward councillor.',
   TRUE, 'election_type', 'https://eci.gov.in'),
 
-('by_election', 'By-Election (उपचुनाव)',
+('by_election', 'By-Election (उपचुनाव)', NULL, NULL,
   'A special election held to fill a vacancy created by the resignation, death, or disqualification of a sitting MP or MLA.',
   'A by-election (also called a bye-election or supplementary election) is held when a seat in the Lok Sabha or Vidhan Sabha becomes vacant before the end of the term. This happens due to the death, resignation, expulsion, or court-ordered disqualification of the elected member. Citizens in that specific constituency vote to fill the vacant seat. By-elections do not affect other constituencies.',
+  'If an MP resigns, only voters in that Parliamentary Constituency participate in the by-election.',
   TRUE, 'election_type', 'https://eci.gov.in'),
 
-('evm', 'EVM — Electronic Voting Machine',
+-- Voting Process & Terminology
+('evm', 'EVM — Electronic Voting Machine', 'EVM', 'Electronic Voting Machine',
   'The machine used to cast your vote at the polling booth. It replaced paper ballots in Indian elections.',
   'An Electronic Voting Machine (EVM) is the official device used to cast votes in Indian elections. It consists of two units: the Control Unit (with the Polling Officer) and the Balloting Unit (with the voter). The balloting unit shows candidate names and party symbols with buttons next to them. You press the button next to your chosen candidate to cast your vote. EVMs have been used in all constituencies since 2004.',
+  'You press the button next to your candidate on the EVM to cast your vote.',
   NULL, 'terminology', 'https://eci.gov.in'),
 
-('vvpat', 'VVPAT — Voter Verifiable Paper Audit Trail',
+('vvpat', 'VVPAT — Voter Verifiable Paper Audit Trail', 'VVPAT', 'Voter Verifiable Paper Audit Trail',
   'A machine connected to the EVM that prints a paper slip showing your vote for 7 seconds so you can verify it.',
   'VVPAT (Voter Verifiable Paper Audit Trail) is a device attached to the EVM that provides a paper trail of your vote. After you press a button on the EVM, a paper slip is printed inside the VVPAT glass case showing the candidate name, party symbol, and serial number. This slip is visible for 7 seconds and then falls into a sealed box. It allows you to confirm your vote was registered correctly. VVPATs were introduced nationwide in 2019.',
-  NULL, 'terminology', 'https://eci.gov.in'),
-
-('nota', 'NOTA — None of the Above',
-  'An option on the EVM that allows you to reject all candidates without spoiling your ballot.',
-  'NOTA (None of the Above) is an option available on all EVMs that allows a voter to formally express rejection of all candidates contesting from their constituency. It appears as the last option on the balloting unit. NOTA was introduced following a Supreme Court of India order on September 27, 2013. Pressing NOTA means your vote is counted but not credited to any candidate. Even if NOTA gets the most votes, the candidate with the next highest votes wins.',
+  'After voting, check the VVPAT slip to confirm your vote was recorded correctly.',
   NULL, 'voting_process', 'https://eci.gov.in'),
 
-('epic', 'EPIC — Electoral Photo Identity Card',
+('nota', 'NOTA — None of the Above', 'NOTA', 'None of the Above',
+  'An option on the EVM that allows you to reject all candidates without spoiling your ballot.',
+  'NOTA (None of the Above) is an option available on all EVMs that allows a voter to formally express rejection of all candidates contesting from their constituency. It appears as the last option on the balloting unit. NOTA was introduced following a Supreme Court of India order on September 27, 2013. Pressing NOTA means your vote is counted but not credited to any candidate. Even if NOTA gets the most votes, the candidate with the next highest votes wins.',
+  'If you do not wish to vote for any candidate, press the NOTA button on the EVM.',
+  NULL, 'voting_process', 'https://eci.gov.in'),
+
+('epic', 'EPIC — Electoral Photo Identity Card', 'EPIC', 'Electoral Photo Identity Card',
   'Your official Voter ID card issued by the Election Commission of India. Used as the primary ID at the polling booth.',
   'EPIC (Electoral Photo Identity Card) is the official identity card issued by the Election Commission of India to registered voters. It is commonly known as the Voter ID card. It contains your name, photo, address, and a unique EPIC number (format: 3 letters + 7 digits, e.g., ABC1234567). The EPIC number is the primary unique identifier used to look up your voter registration status, constituency, and polling booth. An e-EPIC (digital version) can be downloaded from voters.eci.gov.in.',
+  'EPIC number format: ABC1234567 (3 letters + 7 digits).',
   NULL, 'terminology', 'https://voters.eci.gov.in'),
 
-('mcc', 'MCC — Model Code of Conduct',
+('e_epic', 'e-EPIC — Electronic Voter ID Card', 'e-EPIC', 'Electronic Electoral Photo Identity Card',
+  'The digital version of your Voter ID card. Downloadable from voters.eci.gov.in on your phone.',
+  'The e-EPIC is the digital/PDF version of the Electoral Photo Identity Card (EPIC). It can be downloaded from voters.eci.gov.in using your registered mobile number or EPIC number. It is legally valid as a photo ID at the polling booth. You do not need to print it — showing it on your phone is sufficient.',
+  'Download your e-EPIC from voters.eci.gov.in using your EPIC number or registered mobile number.',
+  NULL, 'terminology', 'https://voters.eci.gov.in'),
+
+('mcc', 'Model Code of Conduct', 'MCC', 'Model Code of Conduct',
   'A set of rules that political parties and candidates must follow from the date of election announcement until results.',
   'The Model Code of Conduct (MCC) is a set of guidelines issued by the Election Commission of India that regulates the conduct of political parties and candidates during elections. It comes into force from the date of announcement of elections and remains in effect until the declaration of results. During MCC, the government cannot announce new welfare schemes, make major policy decisions, or use government resources for campaigning. It ensures a level playing field for all parties.',
+  'During MCC, no new government schemes or welfare announcements can be made.',
   NULL, 'terminology', 'https://eci.gov.in'),
 
-('nvsp', 'NVSP — National Voters'' Service Portal',
-  'The official government portal (voters.eci.gov.in) where you can register to vote, check your status, and download your e-EPIC.',
+-- Bodies & Officials
+('nvsp', 'National Voters'' Service Portal', 'NVSP', 'National Voters'' Service Portal',
+  'The official government portal (voters.eci.gov.in) to register to vote, check status, and download e-EPIC.',
   'NVSP (National Voters'' Service Portal) is the official online platform of the Election Commission of India available at voters.eci.gov.in. Through NVSP, you can: register as a new voter (Form 6), correct your voter details (Form 8), transfer your registration to a new constituency (Form 8A), check if your name is on the electoral roll, download your e-EPIC (digital Voter ID), and find your polling booth location.',
-  NULL, 'terminology', 'https://voters.eci.gov.in'),
+  'Register to vote online at voters.eci.gov.in using the NVSP.',
+  NULL, 'bodies', 'https://voters.eci.gov.in'),
 
-('blo', 'BLO — Booth Level Officer',
-  'A government official responsible for maintaining the voter list in your local polling area. Your first point of contact for voter registration issues.',
-  'A Booth Level Officer (BLO) is a government official assigned to each polling booth. Their responsibilities include: maintaining and updating the electoral roll for their booth area, visiting households to verify voter information, distributing Voter ID cards, collecting Form 12D applications from senior citizens (85+) and PwD voters for home voting, and helping voters with registration queries. If you have a problem with your voter registration, your BLO is your first point of contact.',
+('eci', 'Election Commission of India', 'ECI', 'Election Commission of India',
+  'The constitutional body responsible for administering all elections in India.',
+  'The Election Commission of India (ECI) is an autonomous constitutional authority established under Article 324 of the Indian Constitution. It is responsible for administering election processes for the Lok Sabha, Rajya Sabha, State Legislative Assemblies, and the offices of the President and Vice President of India. The ECI announces election dates, enforces the Model Code of Conduct, and oversees the conduct of free and fair elections.',
+  'The ECI announces election dates and enforces the Model Code of Conduct.',
   NULL, 'bodies', 'https://eci.gov.in'),
 
-('assembly_constituency', 'Assembly Constituency (AC / Vidhan Sabha Seat)',
+('blo', 'Booth Level Officer', 'BLO', 'Booth Level Officer',
+  'A government official responsible for maintaining the voter list in your local polling area.',
+  'A Booth Level Officer (BLO) is a government official assigned to each polling booth. Their responsibilities include: maintaining and updating the electoral roll for their booth area, visiting households to verify voter information, distributing Voter ID cards, collecting Form 12D applications from senior citizens (85+) and PwD voters for home voting, and helping voters with registration queries. If you have a problem with your voter registration, your BLO is your first point of contact.',
+  'Contact your BLO if your name is missing from the voter list or if you need help with Form 12D.',
+  NULL, 'bodies', 'https://eci.gov.in'),
+
+('ero', 'Electoral Registration Officer', 'ERO', 'Electoral Registration Officer',
+  'The officer who maintains the electoral roll for an Assembly Constituency. Senior to the BLO.',
+  'The Electoral Registration Officer (ERO) is the officer responsible for the preparation, revision, and maintenance of the electoral roll for an Assembly Constituency. The ERO is usually a senior government officer designated by the State Government. The BLO reports to the ERO. If you need to appeal against a decision made by the BLO, you can approach the ERO.',
+  'Appeals against BLO decisions on voter registration go to the ERO.',
+  NULL, 'bodies', 'https://eci.gov.in'),
+
+('mla', 'Member of Legislative Assembly', 'MLA', 'Member of Legislative Assembly',
+  'Your elected representative in the State Legislature, chosen in Vidhan Sabha elections.',
+  'A Member of the Legislative Assembly (MLA) is a representative elected by voters in an Assembly Constituency to the state Vidhan Sabha (State Legislative Assembly). MLAs make state laws, vote on the state budget, and hold the state government accountable. They also elect Rajya Sabha members. Each Assembly Constituency elects one MLA.',
+  'You vote for an MLA in Vidhan Sabha (state) elections.',
+  NULL, 'bodies', 'https://eci.gov.in'),
+
+('mp', 'Member of Parliament', 'MP', 'Member of Parliament',
+  'Your elected representative in the Lok Sabha (Lower House of Parliament), chosen in Lok Sabha elections.',
+  'A Member of Parliament (MP) is a representative elected by voters in a Parliamentary Constituency to the Lok Sabha (Lower House of Parliament). MPs make national laws, vote on the national budget, and hold the central government accountable. Each Parliamentary Constituency elects one MP to the Lok Sabha.',
+  'You vote for an MP in Lok Sabha (general) elections.',
+  NULL, 'bodies', 'https://eci.gov.in'),
+
+-- Constituencies
+('assembly_constituency', 'Assembly Constituency (AC)', 'AC', 'Assembly Constituency',
   'Your local voting area for state elections. Each AC elects one MLA to the state legislature.',
   'An Assembly Constituency (AC), also called a Vidhan Sabha Seat, is the basic geographical unit for state elections. Each state is divided into multiple ACs. Voters in each AC elect one Member of the Legislative Assembly (MLA). India has 4,033 Vidhan Sabha seats across all states and Union Territories. Your EPIC card and voter registration are linked to your Assembly Constituency.',
+  'Your voter registration is tied to your Assembly Constituency.',
   NULL, 'terminology', 'https://eci.gov.in'),
 
-('parliamentary_constituency', 'Parliamentary Constituency (PC / Lok Sabha Seat)',
-  'Your voting area for central (Lok Sabha) elections. Each PC elects one MP to Parliament. It is made up of multiple Assembly Constituencies.',
+('parliamentary_constituency', 'Parliamentary Constituency (PC)', 'PC', 'Parliamentary Constituency',
+  'Your voting area for Lok Sabha elections. Each PC elects one MP to Parliament.',
   'A Parliamentary Constituency (PC), also called a Lok Sabha Seat, is the geographical unit for Lok Sabha elections. India has 543 Parliamentary Constituencies. Each PC is made up of multiple Assembly Constituencies (ACs). Voters in each PC elect one Member of Parliament (MP). Your Lok Sabha constituency determines which MP represents your area in Parliament.',
+  'India has 543 Parliamentary Constituencies, each electing one MP.',
+  NULL, 'terminology', 'https://eci.gov.in'),
+
+-- Absentee Voter Categories
+('avsc', 'Absentee Voter — Senior Citizen', 'AVSC', 'Absentee Voter Senior Citizen',
+  'Category for voters above 85 years eligible for home voting via postal ballot under Rule 27A.',
+  'AVSC (Absentee Voter Senior Citizen) is the official ECI category for registered voters who are above 85 years of age and eligible to cast their vote from home via postal ballot under Rule 27A of the Conduct of Elections Rules, 1961. Eligible voters must apply via Form 12D within 5 days of the election notification. The facility is voluntary — they may still choose to vote in person.',
+  'Voters above 85 can apply via Form 12D through their BLO for home voting.',
+  NULL, 'terminology', 'https://eci.gov.in'),
+
+('avpd', 'Absentee Voter — Person with Disability', 'AVPD', 'Absentee Voter Person with Disability',
+  'Category for voters with 40%+ benchmark disability eligible for home voting via postal ballot.',
+  'AVPD (Absentee Voter Person with Disability) is the official ECI category for registered voters with a benchmark disability of 40% or more. They are eligible to vote from home via postal ballot under Rule 27A of the Conduct of Elections Rules, 1961. A copy of the benchmark disability certificate must be attached to the Form 12D application. The facility is voluntary.',
+  'PwD voters with 40%+ disability can apply via Form 12D for home voting.',
   NULL, 'terminology', 'https://eci.gov.in');
 
 
--- ============================================================
--- GLOSSARY
--- ============================================================
-INSERT INTO glossary (term, full_form, definition, example, source_url) VALUES
-
-('EVM', 'Electronic Voting Machine', 'The official electronic device used to cast votes in Indian elections. Replaced paper ballots nationwide by 2004.', 'You press the button next to your candidate on the EVM to cast your vote.', 'https://eci.gov.in'),
-('VVPAT', 'Voter Verifiable Paper Audit Trail', 'A device attached to the EVM that prints a paper slip showing your vote for 7 seconds for verification.', 'After voting, check the VVPAT slip to confirm your vote was recorded correctly.', 'https://eci.gov.in'),
-('NOTA', 'None of the Above', 'An EVM option to reject all candidates. Introduced by Supreme Court order in 2013.', 'If you do not wish to vote for any candidate, press NOTA.', 'https://eci.gov.in'),
-('EPIC', 'Electoral Photo Identity Card', 'Your official Voter ID card with a unique 10-character EPIC number.', 'EPIC number format: ABC1234567 (3 letters + 7 digits).', 'https://voters.eci.gov.in'),
-('BLO', 'Booth Level Officer', 'Government official responsible for the electoral roll at each polling booth.', 'Contact your BLO if your name is missing from the voter list.', 'https://eci.gov.in'),
-('ERO', 'Electoral Registration Officer', 'The officer who maintains the electoral roll for an Assembly Constituency. Senior to BLO.', 'Appeals against BLO decisions go to the ERO.', 'https://eci.gov.in'),
-('NVSP', 'National Voters'' Service Portal', 'Official ECI portal at voters.eci.gov.in for voter registration and services.', 'Register to vote online at voters.eci.gov.in using NVSP.', 'https://voters.eci.gov.in'),
-('MCC', 'Model Code of Conduct', 'Guidelines for political parties and candidates during elections, in force from announcement to results.', 'During MCC, no new government schemes can be announced.', 'https://eci.gov.in'),
-('AC', 'Assembly Constituency', 'Local voting area for state elections; each AC elects one MLA.', 'Your voter registration is tied to your Assembly Constituency.', 'https://eci.gov.in'),
-('PC', 'Parliamentary Constituency', 'Voting area for Lok Sabha elections; each PC elects one MP. Made up of multiple ACs.', 'India has 543 Parliamentary Constituencies.', 'https://eci.gov.in'),
-('MLA', 'Member of Legislative Assembly', 'Your elected representative in the State Legislature, chosen in Vidhan Sabha elections.', 'You vote for an MLA in state elections.', 'https://eci.gov.in'),
-('MP', 'Member of Parliament', 'Your elected representative in the Lok Sabha (Lower House of Parliament).', 'You vote for an MP in Lok Sabha elections.', 'https://eci.gov.in'),
-('ECI', 'Election Commission of India', 'The constitutional body responsible for administering all elections in India.', 'The ECI announces election dates and enforces the Model Code of Conduct.', 'https://eci.gov.in'),
-('e-EPIC', 'Electronic Electoral Photo Identity Card', 'The digital/downloadable version of your Voter ID card, available at voters.eci.gov.in.', 'Download your e-EPIC from voters.eci.gov.in using your EPIC number or mobile number.', 'https://voters.eci.gov.in'),
-('AVSC', 'Absentee Voter Senior Citizen', 'Category for voters above 85 years eligible for home voting via postal ballot under Rule 27A.', 'Voters above 85 can apply via Form 12D for home voting.', 'https://eci.gov.in'),
-('AVPD', 'Absentee Voter Person with Disability', 'Category for voters with 40%+ benchmark disability eligible for home voting via postal ballot.', 'PwD voters with 40%+ disability can apply via Form 12D for home voting.', 'https://eci.gov.in');
 
 
 -- ============================================================
