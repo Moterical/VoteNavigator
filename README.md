@@ -91,33 +91,47 @@ Backend runs on: `http://localhost:8080`
 
 ```
 VoteNavigator/
-├── frontend/          # Next.js application
-│   ├── src/
-│   │   ├── app/       # Next.js App Router pages
-│   │   ├── components/# Chat, Timeline, Checklist UI components
-│   │   └── lib/       # API clients, helpers
-│   └── Dockerfile
+├── frontend/          # Next.js application (App Router, TypeScript)
+│   ├── src/app/       # Main pages & layout
+│   └── public/        # Static assets
 ├── backend/           # Node.js + Express API
 │   ├── src/
-│   │   ├── routes/    # /chat, /content, /election
-│   │   ├── services/  # gemini.js, translate.js, tts.js, stt.js
-│   │   ├── db/        # schema, seed, queries
-│   │   └── flows/     # Guided conversation flows
-│   └── Dockerfile
+│   │   ├── config/    # DB & Cloud configurations
+│   │   ├── services/  # Gemini, Translate, Speech services
+│   │   ├── routes/    # /chat, /content, /election endpoints
+│   │   └── index.js   # Server entry point
+│   └── .env.example
 ├── database/
-│   ├── schema.sql     # PostgreSQL schema
-│   └── seed.sql       # Verified ECI content
+│   ├── schema.sql     # PostgreSQL schema (Unified Knowledge Base)
+│   └── seed.sql       # Verified ECI content (FAQs, Glossary, Rights)
 └── README.md
 ```
 
 ---
 
-## 🔒 Assumptions Made
+## 🛠️ Technical Implementation Details
 
-- Voter registration status lookup redirects to the official **NVSP portal** (voters.eci.gov.in) — ECI does not provide a public API for voter data
-- All civic information is sourced from official **Election Commission of India (ECI)** publications and verified before being added to the knowledge base
-- The assistant covers **General Elections (Lok Sabha)** and **State Assembly Elections** — local body elections are out of scope for MVP
-- EPIC Number is used as the **primary unique identifier** for all voter-specific lookups
+### Database Schema (PostgreSQL)
+The database uses a unified **Knowledge Base** approach to handle the "long tail" of civic queries:
+- `knowledge_base`: Merged glossary and civic concepts (EVM, VVPAT, Lok Sabha details).
+- `faqs`: Categories for eligibility, registration, and voting day.
+- `forms_guide`: Step-by-step metadata for ECI forms (Form 6, 8, 8A).
+- `election_events`: State-wise schedules and phases.
+- `accepted_documents`: The 13 verified photo IDs permitted by ECI.
+
+### AI Engine (Gemini 1.5 Flash + RAG)
+The assistant uses a search-first retrieval pattern:
+1. **Keyword Match**: Backend searches local tables for the user's query keywords.
+2. **Context Injection**: Relevant DB rows are injected into the Gemini system prompt as "Reference Facts".
+3. **Reasoning**: Gemini generates a response that prioritizes the injected facts to ensure 100% legal accuracy.
+
+---
+
+## 🔒 Assumptions & Scope
+
+- **Official Redirection**: For sensitive lookups (EPIC verification), the bot provides direct deep-links to `voters.eci.gov.in` instead of requesting voter PII in the chat.
+- **Verification**: All static content in `seed.sql` is cross-referenced with the ECI 2024 General Election handbooks.
+- **Scope**: Covers Lok Sabha (Parliament) and Vidhan Sabha (State) elections. Rajya Sabha misconceptions are handled proactively.
 
 ---
 

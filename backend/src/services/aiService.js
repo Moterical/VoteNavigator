@@ -1,15 +1,10 @@
-const { VertexAI } = require('@google-cloud/vertexai');
-require('dotenv').config();
+const { GoogleGenerativeAI } = require('@google/generative-ai');
+const dotenv = require('dotenv');
 
-// Initialize Vertex AI
-const vertexAI = new VertexAI({
-  project: process.env.GOOGLE_CLOUD_PROJECT,
-  location: process.env.GOOGLE_CLOUD_LOCATION || 'us-central1'
-});
+dotenv.config();
 
-const model = 'gemini-1.5-flash';
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-// System prompt that defines the persona and rules
 const SYSTEM_PROMPT = `
 You are "VoteNavigator", an expert AI assistant for Indian elections.
 Your goal is to help citizens navigate the voting process with 100% accuracy and helpfulness.
@@ -25,13 +20,8 @@ RULES:
 8. If the user asks in a specific Indian language, respond in that language.
 `;
 
-const generativeModel = vertexAI.getGenerativeModel({
-  model: model,
-  systemInstruction: SYSTEM_PROMPT,
-});
-
 /**
- * Main chat function
+ * Main chat function using Google Gemini
  * @param {string} userMessage 
  * @param {Array} contextRows - Facts from knowledge_base/FAQs
  */
@@ -39,7 +29,7 @@ async function getChatResponse(userMessage, contextRows = []) {
   try {
     // Format database context for the AI
     const contextString = contextRows.length > 0 
-      ? "REFENCE FACTS FROM DATABASE:\n" + contextRows.map(r => `- ${r.title || r.question}: ${r.full_explanation || r.answer}`).join("\n")
+      ? "REFERENCE FACTS FROM DATABASE:\n" + contextRows.map(r => `- ${r.title || r.question}: ${r.full_explanation || r.answer}`).join("\n")
       : "No specific database matches found. Use your general knowledge but stay within ECI boundaries.";
 
     const prompt = `
@@ -50,16 +40,22 @@ USER QUESTION:
 ${userMessage}
     `;
 
-    const request = {
-      contents: [{ role: 'user', parts: [{ text: prompt }] }],
-    };
+    // Initialize the model
+    const model = genAI.getGenerativeModel({
+      model: "gemini-1.5-flash",
+      systemInstruction: SYSTEM_PROMPT,
+      generationConfig: {
+        temperature: 0.2, // Low temperature for factual accuracy
+        maxOutputTokens: 1024,
+      }
+    });
 
-    const result = await generativeModel.generateContent(request);
-    const response = result.response;
-    return response.candidates[0].content.parts[0].text;
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    return response.text();
   } catch (error) {
     console.error('Gemini Service Error:', error);
-    throw new Error('Failed to generate response from AI');
+    throw new Error('Failed to generate response: ' + error.message);
   }
 }
 

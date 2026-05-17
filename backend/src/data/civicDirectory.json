@@ -1,0 +1,44 @@
+{
+  "c_1": {
+    "name": "Veerabhadrayya (H.Y.) Meti",
+    "party": "INC",
+    "phone": "+91 9448123456",
+    "email": "mla.bagalkot@karnataka.gov.in",
+    "photoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Blank_portrait%2C_male_%28deeper_blue%29.svg/500px-Blank_portrait%2C_male_%28deeper_blue%29.svg.png"
+  },
+  "c_3": {
+    "name": "B. Shivanna",
+    "party": "INC",
+    "phone": "+91 9845012345",
+    "email": "mla.anekal@karnataka.gov.in",
+    "photoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Blank_portrait%2C_male_%28deeper_blue%29.svg/500px-Blank_portrait%2C_male_%28deeper_blue%29.svg.png"
+  },
+  "c_4": {
+    "name": "Ramalinga Reddy",
+    "party": "INC",
+    "phone": "+91 9480143777",
+    "email": "ramalingareddyofficial@gmail.com",
+    "photoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Blank_portrait%2C_male_%28deeper_blue%29.svg/500px-Blank_portrait%2C_male_%28deeper_blue%29.svg.png"
+  },
+  "c_5": {
+    "name": "C.K. Ramamurthy",
+    "party": "BJP",
+    "phone": "+91 9845112233",
+    "email": "mla.jayanagar@karnataka.gov.in",
+    "photoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Blank_portrait%2C_male_%28deeper_blue%29.svg/500px-Blank_portrait%2C_male_%28deeper_blue%29.svg.png"
+  },
+  "c_6": {
+    "name": "Dr. C.N. Ashwath Narayan",
+    "party": "BJP",
+    "phone": "+91 9448234567",
+    "email": "ashwathnarayancn@gmail.com",
+    "photoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Blank_portrait%2C_male_%28deeper_blue%29.svg/500px-Blank_portrait%2C_male_%28deeper_blue%29.svg.png"
+  },
+  "c_10": {
+    "name": "Mahesh Tenginakai",
+    "party": "BJP",
+    "phone": "+91 9448333444",
+    "email": "mla.hubballi.central@karnataka.gov.in",
+    "photoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Blank_portrait%2C_male_%28deeper_blue%29.svg/500px-Blank_portrait%2C_male_%28deeper_blue%29.svg.png"
+  }
+}

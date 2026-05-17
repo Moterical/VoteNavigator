@@ -1,11 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const { getChatResponse } = require('../services/geminiService');
+const { getChatResponse } = require('../services/aiService');
 const db = require('../config/db');
 
 // POST /api/chat
 // Main AI chat endpoint
 router.post('/', async (req, res) => {
+  // Debug: Check if env is loaded
+  if (!process.env.GROQ_API_KEY) {
+    console.error('ERROR: GROQ_API_KEY is undefined. Env loading failed.');
+  }
+
   try {
     const { message } = req.body;
 
@@ -13,23 +18,17 @@ router.post('/', async (req, res) => {
       return res.status(400).json({ error: 'Message is required' });
     }
 
-    // 1. Simple Keyword Search in DB for context (Naive RAG)
-    const keywords = message.split(' ').filter(w => w.length > 3);
+    // 1. Simple Keyword Search in DB for context (Bypassed for now)
     let contextRows = [];
-
+    /*
+    const keywords = message.split(' ').filter(w => w.length > 3);
     if (keywords.length > 0) {
-      const dbQuery = `
-        SELECT title as item_title, full_explanation as content FROM knowledge_base 
-        WHERE title ILIKE ANY($1) OR abbreviation ILIKE ANY($1)
-        UNION
-        SELECT question as item_title, answer as content FROM faqs
-        WHERE question ILIKE ANY($1)
-        LIMIT 3
-      `;
-      const searchPattern = keywords.map(k => `%${k}%`);
-      const dbResult = await db.query(dbQuery, [searchPattern]);
-      contextRows = dbResult.rows.map(r => ({ title: r.item_title, full_explanation: r.content }));
+      try {
+        const dbQuery = `...`;
+        ...
+      } catch (dbError) { ... }
     }
+    */
 
     // 2. Get AI Response from service
     const aiResponse = await getChatResponse(message, contextRows);

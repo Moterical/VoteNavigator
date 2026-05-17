@@ -1,0 +1,103 @@
+{
+  "districts": [
+    { "id": "d_1", "name": "Bagalkot" },
+    { "id": "d_2", "name": "Bengaluru Urban" },
+    { "id": "d_3", "name": "Mysuru" },
+    { "id": "d_4", "name": "Dakshina Kannada" },
+    { "id": "d_5", "name": "Dharwad" },
+    { "id": "d_6", "name": "Belagavi" }
+  ],
+  "constituencies": {
+    "d_1": [
+      { "id": "c_1", "name": "24 - Bagalkot" },
+      { "id": "c_2", "name": "22 - Mudhol" }
+    ],
+    "d_2": [
+      { "id": "c_3", "name": "176 - Anekal" },
+      { "id": "c_4", "name": "169 - B.T.M Layout" },
+      { "id": "c_5", "name": "173 - Jayanagar" },
+      { "id": "c_6", "name": "157 - Malleshwaram" }
+    ],
+    "d_3": [
+      { "id": "c_7", "name": "216 - Krishnaraja" },
+      { "id": "c_8", "name": "214 - Chamaraja" }
+    ],
+    "d_4": [
+      { "id": "c_9", "name": "202 - Mangaluru City South" }
+    ],
+    "d_5": [
+      { "id": "c_10", "name": "73 - Hubballi-Dharwad Central" }
+    ],
+    "d_6": [
+      { "id": "c_11", "name": "11 - Belagavi North" }
+    ]
+  },
+  "booths": {
+    "c_1": [
+      { "partNo": "1", "name": "Govt Kannada Boys School", "address": "Bagalkot Town, Pin 587101", "lat": "16.1824", "lng": "75.6958" },
+      { "partNo": "2", "name": "Govt Kannada Boys School (Basavanagar)", "address": "Basavanagar, Hiregulbal LT", "lat": "16.1750", "lng": "75.7000" },
+      { "partNo": "3", "name": "Basaveshwara Science College", "address": "Vidyagiri, Bagalkot", "lat": "16.1855", "lng": "75.6888" },
+      { "partNo": "4", "name": "St. Anne's Convent School", "address": "Navanagar Sector 3, Bagalkot", "lat": "16.1950", "lng": "75.6700" }
+    ],
+    "c_2": [
+      { "partNo": "1", "name": "Govt Higher Primary School, Mudhol", "address": "Mudhol Town Center", "lat": "16.3458", "lng": "75.2786" },
+      { "partNo": "2", "name": "Ranna College", "address": "Mudhol Bypass Road", "lat": "16.3500", "lng": "75.2800" },
+      { "partNo": "3", "name": "Govt Urdu School", "address": "Azad Nagar, Mudhol", "lat": "16.3410", "lng": "75.2750" }
+    ],
+    "c_3": [
+      { "partNo": "1", "name": "Govt Higher Primary School, Chandapura", "address": "Chandapura Circle, Anekal Taluk", "lat": "12.7937", "lng": "77.7056" },
+      { "partNo": "2", "name": "St. Joseph's High School", "address": "Anekal Main Road", "lat": "12.7100", "lng": "77.6900" },
+      { "partNo": "3", "name": "Alliance University (East Wing)", "address": "Chikkahagade Cross, Anekal", "lat": "12.7230", "lng": "77.7110" },
+      { "partNo": "4", "name": "Gram Panchayat Office", "address": "Jigani Hobli, Anekal", "lat": "12.7850", "lng": "77.6350" }
+    ],
+    "c_4": [
+      { "partNo": "11", "name": "St. Thomas Public School", "address": "1st Stage, BTM Layout", "lat": "12.9165", "lng": "77.6101" },
+      { "partNo": "12", "name": "BBMP High School", "address": "2nd Stage, BTM Layout", "lat": "12.9100", "lng": "77.6050" },
+      { "partNo": "13", "name": "Greenwood High Pre-School", "address": "Koramangala 4th Block (BTM Border)", "lat": "12.9250", "lng": "77.6250" },
+      { "partNo": "14", "name": "Madiwala Ward Office", "address": "Madiwala Main Road", "lat": "12.9200", "lng": "77.6180" }
+    ],
+    "c_5": [
+      { "partNo": "21", "name": "National College", "address": "7th Block, Jayanagar", "lat": "12.9279", "lng": "77.5815" },
+      { "partNo": "22", "name": "RV College of Physiotherapy", "address": "4th Block, Jayanagar", "lat": "12.9300", "lng": "77.5850" },
+      { "partNo": "23", "name": "Carmel Convent School", "address": "4th T Block, Jayanagar", "lat": "12.9200", "lng": "77.5900" },
+      { "partNo": "24", "name": "BBMP Ward Office 168", "address": "Pattabhirama Nagar, Jayanagar", "lat": "12.9350", "lng": "77.5950" },
+      { "partNo": "25", "name": "Shalimar School", "address": "Tilak Nagar", "lat": "12.9320", "lng": "77.5990" }
+    ],
+    "c_6": [
+      { "partNo": "31", "name": "MES College of Arts & Commerce", "address": "15th Cross, Malleshwaram", "lat": "13.0035", "lng": "77.5714" },
+      { "partNo": "32", "name": "Cluny Convent High School", "address": "11th Main, Malleshwaram", "lat": "13.0000", "lng": "77.5750" },
+      { "partNo": "33", "name": "Kendriya Vidyalaya", "address": "18th Cross, Malleshwaram", "lat": "13.0100", "lng": "77.5650" },
+      { "partNo": "34", "name": "Govt Science College", "address": "Palace Guttahalli", "lat": "12.9950", "lng": "77.5800" }
+    ],
+    "c_7": [
+      { "partNo": "41", "name": "JSS Public School", "address": "Siddarthanagar, Mysuru", "lat": "12.2958", "lng": "76.6393" },
+      { "partNo": "42", "name": "Marimallappa's High School", "address": "Sita Vilas Road", "lat": "12.3000", "lng": "76.6500" },
+      { "partNo": "43", "name": "Maharani's Science College", "address": "JLB Road, Mysuru", "lat": "12.3100", "lng": "76.6450" },
+      { "partNo": "44", "name": "Govt Primary School", "address": "Kuvempunagar", "lat": "12.2850", "lng": "76.6300" }
+    ],
+    "c_8": [
+      { "partNo": "51", "name": "St. Philomena's College", "address": "Bannimantap, Mysuru", "lat": "12.3250", "lng": "76.6550" },
+      { "partNo": "52", "name": "Nirmala High School", "address": "Vontikoppal", "lat": "12.3300", "lng": "76.6400" },
+      { "partNo": "53", "name": "Sadvidya High School", "address": "Narayan Shastri Road", "lat": "12.3150", "lng": "76.6500" }
+    ],
+    "c_9": [
+      { "partNo": "61", "name": "St. Aloysius College", "address": "Light House Hill Rd, Mangaluru", "lat": "12.8732", "lng": "74.8465" },
+      { "partNo": "62", "name": "Canara High School", "address": "Dongerkery, Mangaluru", "lat": "12.8750", "lng": "74.8400" },
+      { "partNo": "63", "name": "Rosario High School", "address": "Pandeshwar", "lat": "12.8650", "lng": "74.8350" },
+      { "partNo": "64", "name": "Govt Primary School, Kadri", "address": "Kadri Mallikatte", "lat": "12.8800", "lng": "74.8550" },
+      { "partNo": "65", "name": "Capitanio High School", "address": "Pumpwell", "lat": "12.8700", "lng": "74.8600" }
+    ],
+    "c_10": [
+      { "partNo": "71", "name": "PC Jabin Science College", "address": "Vidya Nagar, Hubballi", "lat": "15.3647", "lng": "75.1315" },
+      { "partNo": "72", "name": "St. Mary's High School", "address": "Keshwapur, Hubballi", "lat": "15.3550", "lng": "75.1450" },
+      { "partNo": "73", "name": "BVB College of Engineering", "address": "Vidya Nagar", "lat": "15.3700", "lng": "75.1250" },
+      { "partNo": "74", "name": "Govt Kannada Boys School", "address": "Durgad Bail", "lat": "15.3500", "lng": "75.1400" }
+    ],
+    "c_11": [
+      { "partNo": "81", "name": "St. Paul's High School", "address": "Camp, Belagavi", "lat": "15.8497", "lng": "74.5085" },
+      { "partNo": "82", "name": "KLS Gogte Institute of Technology", "address": "Udyambag, Belagavi", "lat": "15.8250", "lng": "74.4950" },
+      { "partNo": "83", "name": "Marathi Vidyaniketan", "address": "Tilakwadi", "lat": "15.8400", "lng": "74.5000" },
+      { "partNo": "84", "name": "Lingaraj College", "address": "College Road", "lat": "15.8550", "lng": "74.5150" }
+    ]
+  }
+}

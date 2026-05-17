@@ -1,0 +1,44 @@
+{
+  "Bengaluru South": [
+    {
+      "name": "SHRI TEJASVI SURYA",
+      "party": "BJP",
+      "age": 33,
+      "constituency": "Bengaluru South"
+    },
+    {
+      "name": "SOWMYA REDDY",
+      "party": "INC",
+      "age": 41,
+      "constituency": "Bengaluru South"
+    }
+  ],
+  "Bangalore North": [
+    {
+      "name": "KUM. SHOBHA KANRANDLAJE",
+      "party": "BJP",
+      "age": 57,
+      "constituency": "Bangalore North"
+    },
+    {
+      "name": "PROF. M.V. RAJEEV GOWDA",
+      "party": "INC",
+      "age": 60,
+      "constituency": "Bangalore North"
+    }
+  ],
+  "Mysore": [
+    {
+      "name": "SHRI YADUVEER WADIYAR",
+      "party": "BJP",
+      "age": 32,
+      "constituency": "Mysore"
+    },
+    {
+      "name": "SHRI M. LAKSHMAN",
+      "party": "INC",
+      "age": 55,
+      "constituency": "Mysore"
+    }
+  ]
+}
