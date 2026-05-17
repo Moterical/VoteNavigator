@@ -36,7 +36,7 @@ Maps                →  Google Maps API
 - **AI Translation** — Instantly translates regional candidate manifestos and details into English (or other target languages) using Gemini's structured JSON output.
 - **Data Transparency** — Empowers voters to make informed decisions before heading to the polls.
 
-### 3. 📍 Booth Locator (Area Browser)
+### 3. 🏛️ Booth Locator (Area Browser)
 - **Cascading Selection** — A highly reliable, directory-based browser to select your District and Constituency without relying on brittle government captchas.
 - **Google Maps Integration** — Instantly generates a "Get Directions" deep link to your specific polling booth, bypassing complex map embeds for a seamless mobile experience.
 - **Offline-First Data** — Uses a robust local JSON directory (`boothDirectory.json`) to guarantee 100% uptime during election day traffic spikes.
