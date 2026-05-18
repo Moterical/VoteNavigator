@@ -26,7 +26,6 @@ interface BoothLocatorProps {
   currentLang: string;
 }
 
-const GMAPS_API_KEY = "AIzaSyCWzef610zNjlIgG-L3tfIAx1zvMPREgBQ";
 
 export default function BoothLocator({ t, currentLang }: BoothLocatorProps) {
   const [districts, setDistricts] = useState<District[]>([]);

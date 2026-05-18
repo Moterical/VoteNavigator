@@ -1,0 +1,257 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+}
+
+.header {
+  text-align: left;
+  margin-bottom: 8px;
+}
+
+.header h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  color: var(--text);
+}
+
+.header p {
+  color: var(--text-dim);
+  font-size: 16px;
+  margin: 0;
+}
+
+.mainContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .mainContent {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Left Panel: Input */
+.inputPanel {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.inputGroup label {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.select, .textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(0, 0, 0, 0.2);
+  color: var(--text);
+  font-size: 16px;
+  outline: none;
+  transition: all 0.2s ease;
+  font-family: 'Inter', sans-serif;
+}
+
+.select option {
+  background: var(--bg-main);
+  color: var(--text);
+}
+
+.select:focus, .textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(var(--accent-rgb), 0.2);
+}
+
+.textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.generateBtn {
+  background: linear-gradient(135deg, var(--accent) 0%, #7e22ce 100%);
+  color: white;
+  border: none;
+  padding: 16px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.generateBtn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
+}
+
+.generateBtn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Right Panel: Action */
+.actionPanel {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-height: 400px;
+}
+
+.placeholderState {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 16px;
+  color: var(--text-dim);
+}
+
+.placeholderState span {
+  font-size: 48px;
+}
+
+.repCard {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.repPhoto {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--border);
+}
+
+.repInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.repInfo h3 {
+  margin: 0;
+  font-size: 18px;
+  color: var(--text);
+}
+
+.partyTag {
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-dim);
+  width: fit-content;
+  margin-top: 4px;
+}
+
+.draftSection h4 {
+  margin: 0 0 12px 0;
+  color: var(--text);
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.draftEditor {
+  width: 100%;
+  min-height: 200px;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(0, 0, 0, 0.2);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.5;
+  font-family: 'Inter', sans-serif;
+  resize: vertical;
+  margin-bottom: 20px;
+  outline: none;
+}
+
+.draftEditor:focus {
+  border-color: var(--accent);
+}
+
+.actionButtons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.actionBtn {
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+  border: none;
+}
+
+.callBtn {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.callBtn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.emailBtn {
+  background: var(--accent);
+  color: white;
+}
+
+.emailBtn:hover {
+  background: #7e22ce;
+  transform: translateY(-2px);
+}
