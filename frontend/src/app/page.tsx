@@ -161,7 +161,7 @@ export default function Home() {
       <aside className={`${styles.sidebar} ${isSidebarOpen ? styles.open : styles.closed}`}>
         <div className={styles.sidebarHeader}>
           <div className={styles.logo}>
-            <span className={styles.logoIcon}>🗳️</span>
+            <img src="/logo.png" alt="Logo" className={styles.logoIcon} />
             <h1 className={styles.logoText}>Vote<span>Navigator</span></h1>
           </div>
         </div>
