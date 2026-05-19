@@ -32,8 +32,12 @@ class CivicService {
     }
   }
 
-  async generateComplaintDraft(issueDescription, repName, areaName) {
+  async generateComplaintDraft(issueDescription, repName, areaName, evidenceType) {
     try {
+      const evidenceSentence = evidenceType
+        ? `Additionally, mention that the citizen has attached ${evidenceType} evidence to this communication for reference.`
+        : '';
+
       const prompt = `
         You are a helpful civic assistant. A citizen wants to report a local issue to their elected representative (MLA).
         
@@ -41,6 +45,7 @@ class CivicService {
         - Representative Name: ${repName}
         - Area/Constituency: ${areaName}
         - The Issue: "${issueDescription}"
+        - Evidence: ${evidenceSentence}
         
         Write a short, polite, and formal email draft that the citizen can send to their MLA. 
         It should be concise (max 3-4 sentences). Do not include any placeholder brackets except for [Your Name] and [Your Phone Number] at the very bottom.
@@ -49,7 +54,7 @@ class CivicService {
       `;
 
       const model = genAI.getGenerativeModel({
-        model: "gemini-1.5-flash",
+        model: "gemini-2.5-flash",
         generationConfig: {
           temperature: 0.3,
         }
@@ -61,7 +66,8 @@ class CivicService {
     } catch (error) {
       console.error('Gemini Draft Generation Error:', error);
       // Fallback template if AI fails
-      const fallbackDraft = `Dear ${repName},\n\nI am a resident of ${areaName}. I am writing to urgently bring your attention to the following issue: ${issueDescription}.\n\nPlease look into this matter as it affects the safety and wellbeing of our community.\n\nRegards,\n[Your Name]\n[Your Phone Number]`;
+      const evidenceText = evidenceType ? ` I have attached supporting ${evidenceType} evidence to this email for your review.` : '';
+      const fallbackDraft = `Dear ${repName},\n\nI am a resident of ${areaName}. I am writing to urgently bring your attention to the following issue: ${issueDescription}.${evidenceText}\n\nPlease look into this matter as it affects the safety and wellbeing of our community.\n\nRegards,\n[Your Name]\n[Your Phone Number]`;
       return { success: true, draft: fallbackDraft };
     }
   }

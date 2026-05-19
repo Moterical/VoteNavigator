@@ -11,13 +11,13 @@ router.get('/representative/:constituencyId', (req, res) => {
 
 // POST /api/civic/draft-complaint
 router.post('/draft-complaint', async (req, res) => {
-  const { issueDescription, repName, areaName } = req.body;
+  const { issueDescription, repName, areaName, evidenceType } = req.body;
   
   if (!issueDescription || !repName || !areaName) {
     return res.status(400).json({ success: false, message: "Missing required fields." });
   }
 
-  const result = await civicService.generateComplaintDraft(issueDescription, repName, areaName);
+  const result = await civicService.generateComplaintDraft(issueDescription, repName, areaName, evidenceType);
   res.json(result);
 });
 

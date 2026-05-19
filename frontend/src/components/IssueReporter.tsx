@@ -22,6 +22,91 @@ interface Representative {
   photoUrl: string;
 }
 
+function RepresentativeImage({ name }: { name: string }) {
+  const [imgUrl, setImgUrl] = useState<string | null>(null);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    if (!name) return;
+    setError(false);
+    setImgUrl(null);
+
+    const fetchWikiImage = async () => {
+      try {
+        const cleanName = name.replace(/^(Dr\.|Shri\.|Smt\.|Mr\.|Mrs\.|H\.Y\.)\s+/gi, '').trim();
+        const url = `https://en.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(cleanName)}&prop=pageimages&pithumbsize=200&format=json&formatversion=2&origin=*`;
+        const res = await fetch(url);
+        const data = await res.json();
+        
+        const page = data?.query?.pages?.[0];
+        if (page && page.thumbnail && page.thumbnail.source) {
+          setImgUrl(page.thumbnail.source);
+        } else {
+          // Fallback: Search for the title first
+          const searchUrl = `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(cleanName + ' MLA Karnataka')}&format=json&origin=*`;
+          const searchRes = await fetch(searchUrl);
+          const searchData = await searchRes.json();
+          const firstResult = searchData?.query?.search?.[0];
+          
+          if (firstResult && firstResult.title) {
+            const pageUrl = `https://en.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(firstResult.title)}&prop=pageimages&pithumbsize=200&format=json&formatversion=2&origin=*`;
+            const pageRes = await fetch(pageUrl);
+            const pageData = await pageRes.json();
+            const pageInfo = pageData?.query?.pages?.[0];
+            if (pageInfo && pageInfo.thumbnail && pageInfo.thumbnail.source) {
+              setImgUrl(pageInfo.thumbnail.source);
+              return;
+            }
+          }
+          setError(true);
+        }
+      } catch (err) {
+        console.error('Error fetching wiki image:', err);
+        setError(true);
+      }
+    };
+
+    fetchWikiImage();
+  }, [name]);
+
+  const getInitials = (fullName: string) => {
+    const clean = fullName.replace(/^(Dr\.|Shri\.|Smt\.|Mr\.|Mrs\.|H\.Y\.)\s+/gi, '').trim();
+    const parts = clean.split(' ');
+    if (parts.length >= 2) {
+      return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+    }
+    return clean.slice(0, 2).toUpperCase();
+  };
+
+  if (imgUrl && !error) {
+    return (
+      <img 
+        src={imgUrl} 
+        alt={name} 
+        className={styles.repPhoto} 
+        onError={() => setError(true)}
+      />
+    );
+  }
+
+  const initials = getInitials(name);
+  const colors = [
+    'linear-gradient(135deg, #2563eb, #1d4ed8)',
+    'linear-gradient(135deg, #7c3aed, #6d28d9)',
+    'linear-gradient(135deg, #059669, #047857)',
+    'linear-gradient(135deg, #db2777, #be185d)',
+    'linear-gradient(135deg, #d97706, #b45309)',
+  ];
+  const hash = name.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+  const bg = colors[hash % colors.length];
+
+  return (
+    <div className={styles.repPhotoFallback} style={{ background: bg }}>
+      {initials}
+    </div>
+  );
+}
+
 export default function IssueReporter() {
   const [districts, setDistricts] = useState<District[]>([]);
   const [constituencies, setConstituencies] = useState<Constituency[]>([]);
@@ -29,6 +114,8 @@ export default function IssueReporter() {
   const [selectedDistrict, setSelectedDistrict] = useState("");
   const [selectedConstituency, setSelectedConstituency] = useState("");
   const [issueDescription, setIssueDescription] = useState("");
+  const [evidenceFile, setEvidenceFile] = useState<File | null>(null);
+  const [evidencePreview, setEvidencePreview] = useState<string | null>(null);
   
   const [repInfo, setRepInfo] = useState<Representative | null>(null);
   const [draft, setDraft] = useState("");
@@ -60,8 +147,31 @@ export default function IssueReporter() {
     }
   };
 
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setEvidenceFile(file);
+
+    // If it's an image, create a URL preview
+    if (file.type.startsWith('image/')) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setEvidencePreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setEvidencePreview(null);
+    }
+  };
+
+  const handleRemoveFile = () => {
+    setEvidenceFile(null);
+    setEvidencePreview(null);
+  };
+
   const handleGenerate = async () => {
-    if (!selectedConstituency || !issueDescription) return;
+    if (!selectedConstituency || !issueDescription || !evidenceFile) return;
 
     setIsLoading(true);
     setError("");
@@ -86,7 +196,8 @@ export default function IssueReporter() {
       const draftRes = await axios.post(`${API_BASE}/api/civic/draft-complaint`, {
         issueDescription,
         repName: repData.name,
-        areaName
+        areaName,
+        evidenceType: evidenceFile.type.startsWith('image/') ? 'photographic' : 'video'
       });
 
       if (draftRes.data.success) {
@@ -160,10 +271,47 @@ export default function IssueReporter() {
             />
           </div>
 
+          <div className={styles.inputGroup}>
+            <label>4. Upload Photo / Video Evidence</label>
+            {!evidenceFile ? (
+              <div 
+                className={styles.uploadZone}
+                onClick={() => document.getElementById('evidence-upload')?.click()}
+              >
+                <span className={styles.uploadText}>Click to upload Image or Video evidence</span>
+                <span className={styles.uploadSubtext}>Supported formats: JPG, PNG, MP4 (Max 10MB)</span>
+                <input 
+                  type="file"
+                  id="evidence-upload"
+                  accept="image/*,video/*"
+                  onChange={handleFileChange}
+                  className={styles.hiddenFileInput}
+                />
+              </div>
+            ) : (
+              <div className={styles.uploadedFileCard}>
+                {evidencePreview ? (
+                  <img src={evidencePreview} alt="Preview" className={styles.fileThumbnail} />
+                ) : (
+                  <div className={styles.videoIconThumbnail}>
+                    {evidenceFile.type.startsWith('video/') ? '🎥' : '📄'}
+                  </div>
+                )}
+                <div className={styles.fileDetails}>
+                  <span className={styles.fileName}>{evidenceFile.name}</span>
+                  <span className={styles.fileSize}>{(evidenceFile.size / (1024 * 1024)).toFixed(2)} MB</span>
+                </div>
+                <button type="button" className={styles.removeFileBtn} onClick={handleRemoveFile}>
+                  ✕
+                </button>
+              </div>
+            )}
+          </div>
+
           <button 
             className={styles.generateBtn}
             onClick={handleGenerate}
-            disabled={!selectedConstituency || !issueDescription || isLoading}
+            disabled={!selectedConstituency || !issueDescription || !evidenceFile || isLoading}
           >
             {isLoading ? "Analyzing & Drafting..." : "Generate Official Complaint"}
           </button>
@@ -173,7 +321,29 @@ export default function IssueReporter() {
 
         {/* Right Panel: Action Area */}
         <div className={styles.actionPanel}>
-          {!repInfo ? (
+          {isLoading ? (
+            <div className={styles.loadingState}>
+              <div className={styles.sparkleIcon}>⚡</div>
+              <h3 className={styles.loadingTitle}>Drafting Complaint...</h3>
+              <p className={styles.loadingProgress}>
+                Gemini is composing a professional letter to your representative...
+              </p>
+              
+              <div className={styles.skeletonRepCard}>
+                <div className={styles.skeletonAvatar}></div>
+                <div className={styles.skeletonRepInfo}>
+                  <div className={styles.skeletonLineShort}></div>
+                  <div className={styles.skeletonLineTiny}></div>
+                </div>
+              </div>
+
+              <div className={styles.skeletonDraftArea}>
+                <div className={styles.skeletonLineFull}></div>
+                <div className={styles.skeletonLineFull}></div>
+                <div className={styles.skeletonLineMedium}></div>
+              </div>
+            </div>
+          ) : !repInfo ? (
             <div className={styles.placeholderState}>
               <span>📋</span>
               <p>Fill out the details on the left to identify your representative and draft a formal complaint.</p>
@@ -181,7 +351,7 @@ export default function IssueReporter() {
           ) : (
             <>
               <div className={styles.repCard}>
-                <img src={repInfo.photoUrl} alt={repInfo.name} className={styles.repPhoto} />
+                <RepresentativeImage name={repInfo.name} />
                 <div className={styles.repInfo}>
                   <h3>{repInfo.name}</h3>
                   <span className={styles.partyTag}>{repInfo.party} MLA</span>

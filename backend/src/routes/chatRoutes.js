@@ -7,8 +7,8 @@ const db = require('../config/db');
 // Main AI chat endpoint
 router.post('/', async (req, res) => {
   // Debug: Check if env is loaded
-  if (!process.env.GROQ_API_KEY) {
-    console.error('ERROR: GROQ_API_KEY is undefined. Env loading failed.');
+  if (!process.env.GEMINI_API_KEY) {
+    console.error('ERROR: GEMINI_API_KEY is undefined. Env loading failed.');
   }
 
   try {

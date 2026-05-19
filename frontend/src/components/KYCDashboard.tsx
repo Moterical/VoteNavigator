@@ -25,6 +25,12 @@ export default function KYCDashboard({ t, currentLang }: KYCDashboardProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [viewMode, setViewMode] = useState<'MP' | 'MLA' | null>(null);
 
+  const handleViewModeChange = (mode: 'MP' | 'MLA') => {
+    setViewMode(mode);
+    setSelectedConstituency('');
+    setCandidates([]);
+  };
+
   // Fetch constituencies
   useEffect(() => {
     if (!viewMode) return;
@@ -43,7 +49,10 @@ export default function KYCDashboard({ t, currentLang }: KYCDashboardProps) {
 
   // Fetch and auto-translate candidates
   useEffect(() => {
-    if (!selectedConstituency || !viewMode) return;
+    if (!selectedConstituency || !viewMode) {
+      setCandidates([]);
+      return;
+    }
     
     const fetchCandidates = async () => {
       setIsLoading(true);
@@ -110,12 +119,12 @@ export default function KYCDashboard({ t, currentLang }: KYCDashboardProps) {
           <h2 className={styles.modalTitle}>{t.modalTitle}</h2>
           <p className={styles.modalSubtitle}>{t.modalSub}</p>
           <div className={styles.modalOptions}>
-            <div className={styles.optionCard} onClick={() => setViewMode('MP')}>
+            <div className={styles.optionCard} onClick={() => handleViewModeChange('MP')}>
               <span className={styles.optionIcon}>🏛️</span>
               <span className={styles.optionLabel}>{t.mpLabel}</span>
               <span className={styles.optionDesc}>{t.mpDesc}</span>
             </div>
-            <div className={styles.optionCard} onClick={() => setViewMode('MLA')}>
+            <div className={styles.optionCard} onClick={() => handleViewModeChange('MLA')}>
               <span className={styles.optionIcon}>🏘️</span>
               <span className={styles.optionLabel}>{t.mlaLabel}</span>
               <span className={styles.optionDesc}>{t.mlaDesc}</span>
@@ -137,13 +146,13 @@ export default function KYCDashboard({ t, currentLang }: KYCDashboardProps) {
         <div className={styles.toggleContainer}>
           <button 
             className={`${styles.toggleButton} ${viewMode === 'MP' ? styles.toggleButtonActive : ''}`}
-            onClick={() => setViewMode('MP')}
+            onClick={() => handleViewModeChange('MP')}
           >
             {t.mpShort}
           </button>
           <button 
             className={`${styles.toggleButton} ${viewMode === 'MLA' ? styles.toggleButtonActive : ''}`}
-            onClick={() => setViewMode('MLA')}
+            onClick={() => handleViewModeChange('MLA')}
           >
             {t.mlaShort}
           </button>

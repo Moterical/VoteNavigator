@@ -1,0 +1,117 @@
+{
+  "176 - Anekal": [
+    {
+      "name": "B. Shivanna",
+      "party": "INC",
+      "age": 61,
+      "constituency": "176 - Anekal",
+      "type": "MLA"
+    }
+  ],
+  "169 - B.T.M Layout": [
+    {
+      "name": "Ramalinga Reddy",
+      "party": "INC",
+      "age": 71,
+      "constituency": "169 - B.T.M Layout",
+      "type": "MLA"
+    }
+  ],
+  "173 - Jayanagar": [
+    {
+      "name": "C.K. Ramamurthy",
+      "party": "BJP",
+      "age": 58,
+      "constituency": "173 - Jayanagar",
+      "type": "MLA"
+    }
+  ],
+  "157 - Malleshwaram": [
+    {
+      "name": "Dr. C.N. Ashwath Narayan",
+      "party": "BJP",
+      "age": 55,
+      "constituency": "157 - Malleshwaram",
+      "type": "MLA"
+    }
+  ],
+  "216 - Krishnaraja": [
+    {
+      "name": "T.S. Srivatsa",
+      "party": "BJP",
+      "age": 52,
+      "constituency": "216 - Krishnaraja",
+      "type": "MLA"
+    }
+  ],
+  "214 - Chamaraja": [
+    {
+      "name": "K. Harish Gowda",
+      "party": "INC",
+      "age": 48,
+      "constituency": "214 - Chamaraja",
+      "type": "MLA"
+    }
+  ],
+  "24 - Bagalkot": [
+    {
+      "name": "Veerabhadrayya (H.Y.) Meti",
+      "party": "INC",
+      "age": 78,
+      "constituency": "24 - Bagalkot",
+      "type": "MLA"
+    }
+  ],
+  "22 - Mudhol": [
+    {
+      "name": "Govind M. Karjol",
+      "party": "BJP",
+      "age": 72,
+      "constituency": "22 - Mudhol",
+      "type": "MLA"
+    }
+  ],
+  "202 - Mangaluru City South": [
+    {
+      "name": "D. Vedavyas Kamath",
+      "party": "BJP",
+      "age": 46,
+      "constituency": "202 - Mangaluru City South",
+      "type": "MLA"
+    }
+  ],
+  "73 - Hubballi-Dharwad Central": [
+    {
+      "name": "Mahesh Tenginakai",
+      "party": "BJP",
+      "age": 51,
+      "constituency": "73 - Hubballi-Dharwad Central",
+      "type": "MLA"
+    }
+  ],
+  "11 - Belagavi North": [
+    {
+      "name": "Asif (Raju) Sait",
+      "party": "INC",
+      "age": 49,
+      "constituency": "11 - Belagavi North",
+      "type": "MLA"
+    }
+  ],
+  "Mysuru": [
+    {
+      "name": "T.S. Srivatsa",
+      "party": "BJP",
+      "age": 52,
+      "constituency": "216 - Krishnaraja (Mysuru)",
+      "type": "MLA"
+    },
+    {
+      "name": "K. Harish Gowda",
+      "party": "INC",
+      "age": 48,
+      "constituency": "214 - Chamaraja (Mysuru)",
+      "type": "MLA"
+    }
+  ]
+}

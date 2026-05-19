@@ -6,6 +6,8 @@ import styles from './page.module.css';
 import KYCDashboard from '../components/KYCDashboard';
 import BoothLocator from '../components/BoothLocator';
 import IssueReporter from '../components/IssueReporter';
+import VoterRights from '../components/VoterRights';
+import KnowledgeBase from '../components/KnowledgeBase';
 
 export default function Home() {
   const [isSidebarOpen, setSidebarOpen] = useState(true);
@@ -25,7 +27,7 @@ export default function Home() {
   const translations: any = {
     English: {
       assistant: "Assistant", aiChat: "AI Chat", tools: "Tools",
-      kycDashboard: "KYC Dashboard", boothLocator: "Booth Locator", issueReporter: "Issue Reporter", form6Wizard: "Form 6 Wizard",
+      kycDashboard: "KYC Dashboard", boothLocator: "Booth Locator", issueReporter: "Issue Reporter",
       information: "Information", voterRights: "Voter Rights", knowledgeBase: "Knowledge Base",
       officialData: "Official Data Engine", title: "Election Navigator 2026",
       heroTitle: "How can I help you vote today?", heroSub: "Ask about registration, your EPIC number, or the local election steps.",
@@ -48,7 +50,7 @@ export default function Home() {
     },
     Hindi: {
       assistant: "सहायक", aiChat: "एआई चैट", tools: "उपकरण",
-      kycDashboard: "केवाईसी डैशबोर्ड", boothLocator: "बूथ लोकेटर", issueReporter: "शिकायत दर्ज करें", form6Wizard: "फॉर्म 6 विज़ार्ड",
+      kycDashboard: "केवाईसी डैशबोर्ड", boothLocator: "बूथ लोकेटर", issueReporter: "शिकायत दर्ज करें",
       information: "जानकारी", voterRights: "मतदाता अधिकार", knowledgeBase: "ज्ञानकोष",
       officialData: "आधिकारिक डेटा इंजन", title: "चुनाव नेविगेटर 2026",
       heroTitle: "आज वोट करने में मैं आपकी कैसे मदद कर सकता हूँ?", heroSub: "पंजीकरण, अपने EPIC नंबर, या स्थानीय चुनाव चरणों के बारे में पूछें।",
@@ -71,7 +73,7 @@ export default function Home() {
     },
     Kannada: {
       assistant: "ಸಹಾಯಕ", aiChat: "ಎಐ ಚಾಟ್", tools: "ಪರಿಕರಗಳು",
-      kycDashboard: "KYC ಡ್ಯಾಶ್‌ಬೋರ್ಡ್", boothLocator: "ಬೂತ್ ಲೊಕೇಟರ್", issueReporter: "ದೂರು ದಾಖಲಿಸಿ", form6Wizard: "ನಮೂನೆ 6 ವಿಝಾರ್ಡ್",
+      kycDashboard: "KYC ಡ್ಯಾಶ್‌ಬೋರ್ಡ್", boothLocator: "ಬೂತ್ ಲೊಕೇಟರ್", issueReporter: "ದೂರು ದಾಖಲಿಸಿ",
       information: "ಮಾಹಿತಿ", voterRights: "ಮತದಾರರ ಹಕ್ಕುಗಳು", knowledgeBase: "ಜ್ಞಾನದ ನೆಲೆ",
       officialData: "ಅಧಿಕೃತ ಡೇಟಾ ಎಂಜಿನ್", title: "ಚುನಾವಣಾ ಮಾರ್ಗದರ್ಶಿ 2026",
       heroTitle: "ಇಂದು ಮತ ಚಲಾಯಿಸಲು ನಾನು ನಿಮಗೆ ಹೇಗೆ ಸಹಾಯ ಮಾಡಬಹುದು?", heroSub: "ನೋಂದಣಿ, ನಿಮ್ಮ EPIC ಸಂಖ್ಯೆ ಅಥವಾ ಸ್ಥಳೀಯ ಚುನಾವಣಾ ಹಂತಗಳ ಬಗ್ಗೆ ಕೇಳಿ.",
@@ -195,20 +197,20 @@ export default function Home() {
             >
               <span className={styles.icon}>📢</span> {t.issueReporter}
             </button>
-            <button 
-              className={`${styles.navItem} ${activeTab === 'form6' ? styles.active : ''}`}
-              onClick={() => setActiveTab('form6')}
-            >
-              <span className={styles.icon}>🆔</span> {t.form6Wizard}
-            </button>
           </div>
 
           <div className={styles.navGroup}>
             <span className={styles.navLabel}>{t.information}</span>
-            <button className={styles.navItem}>
+            <button 
+              className={`${styles.navItem} ${activeTab === 'rights' ? styles.active : ''}`}
+              onClick={() => setActiveTab('rights')}
+            >
               <span className={styles.icon}>🛡️</span> {t.voterRights}
             </button>
-            <button className={styles.navItem}>
+            <button 
+              className={`${styles.navItem} ${activeTab === 'knowledge' ? styles.active : ''}`}
+              onClick={() => setActiveTab('knowledge')}
+            >
               <span className={styles.icon}>📚</span> {t.knowledgeBase}
             </button>
           </div>
@@ -352,6 +354,14 @@ export default function Home() {
           ) : activeTab === 'issue' ? (
             <div className={styles.kycTab}>
               <IssueReporter />
+            </div>
+          ) : activeTab === 'rights' ? (
+            <div className={styles.kycTab}>
+              <VoterRights t={t} currentLang={currentLang} />
+            </div>
+          ) : activeTab === 'knowledge' ? (
+            <div className={styles.kycTab}>
+              <KnowledgeBase t={t} currentLang={currentLang} />
             </div>
           ) : (
             <div className={styles.chatArea}>

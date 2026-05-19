@@ -1,44 +1,450 @@
 {
-  "Bengaluru South": [
-    {
-      "name": "SHRI TEJASVI SURYA",
-      "party": "BJP",
-      "age": 33,
-      "constituency": "Bengaluru South"
-    },
-    {
-      "name": "SOWMYA REDDY",
-      "party": "INC",
-      "age": 41,
-      "constituency": "Bengaluru South"
-    }
-  ],
   "Bangalore North": [
     {
       "name": "KUM. SHOBHA KANRANDLAJE",
       "party": "BJP",
       "age": 57,
-      "constituency": "Bangalore North"
+      "constituency": "Bangalore North",
+      "type": "MP"
     },
     {
       "name": "PROF. M.V. RAJEEV GOWDA",
       "party": "INC",
       "age": 60,
-      "constituency": "Bangalore North"
+      "constituency": "Bangalore North",
+      "type": "MP"
+    }
+  ],
+  "Bengaluru South": [
+    {
+      "name": "SHRI TEJASVI SURYA",
+      "party": "BJP",
+      "age": 33,
+      "constituency": "Bengaluru South",
+      "type": "MP"
+    },
+    {
+      "name": "SOWMYA REDDY",
+      "party": "INC",
+      "age": 41,
+      "constituency": "Bengaluru South",
+      "type": "MP"
+    }
+  ],
+  "Bangalore Central": [
+    {
+      "name": "P.C. MOHAN",
+      "party": "BJP",
+      "age": 60,
+      "constituency": "Bangalore Central",
+      "type": "MP"
+    },
+    {
+      "name": "MANSOOR ALI KHAN",
+      "party": "INC",
+      "age": 48,
+      "constituency": "Bangalore Central",
+      "type": "MP"
+    }
+  ],
+  "Bangalore Rural": [
+    {
+      "name": "DR. C.N. MANJUNATH",
+      "party": "BJP",
+      "age": 66,
+      "constituency": "Bangalore Rural",
+      "type": "MP"
+    },
+    {
+      "name": "D.K. SURESH",
+      "party": "INC",
+      "age": 57,
+      "constituency": "Bangalore Rural",
+      "type": "MP"
     }
   ],
   "Mysore": [
     {
-      "name": "SHRI YADUVEER WADIYAR",
+      "name": "YADUVEER WADIYAR",
       "party": "BJP",
       "age": 32,
-      "constituency": "Mysore"
+      "constituency": "Mysore",
+      "type": "MP"
     },
     {
-      "name": "SHRI M. LAKSHMAN",
+      "name": "M. LAKSHMAN",
       "party": "INC",
       "age": 55,
-      "constituency": "Mysore"
+      "constituency": "Mysore",
+      "type": "MP"
+    }
+  ],
+  "Chamarajanagar": [
+    {
+      "name": "S. BALARAJ",
+      "party": "BJP",
+      "age": 52,
+      "constituency": "Chamarajanagar",
+      "type": "MP"
+    },
+    {
+      "name": "SUNIL BOSE",
+      "party": "INC",
+      "age": 42,
+      "constituency": "Chamarajanagar",
+      "type": "MP"
+    }
+  ],
+  "Mandya": [
+    {
+      "name": "H.D. KUMARASWAMY",
+      "party": "JD(S)",
+      "age": 64,
+      "constituency": "Mandya",
+      "type": "MP"
+    },
+    {
+      "name": "Venkataramane Gowda (Star Chandru)",
+      "party": "INC",
+      "age": 50,
+      "constituency": "Mandya",
+      "type": "MP"
+    }
+  ],
+  "Hassan": [
+    {
+      "name": "PRAJWAL REVANNA",
+      "party": "JD(S)",
+      "age": 33,
+      "constituency": "Hassan",
+      "type": "MP"
+    },
+    {
+      "name": "SHREYAS M. PATEL",
+      "party": "INC",
+      "age": 32,
+      "constituency": "Hassan",
+      "type": "MP"
+    }
+  ],
+  "Dakshina Kannada": [
+    {
+      "name": "CAPTAIN Brijesh Chowta",
+      "party": "BJP",
+      "age": 42,
+      "constituency": "Dakshina Kannada",
+      "type": "MP"
+    },
+    {
+      "name": "PADMARAJ R. POOJARY",
+      "party": "INC",
+      "age": 49,
+      "constituency": "Dakshina Kannada",
+      "type": "MP"
+    }
+  ],
+  "Udupi Chikmagalur": [
+    {
+      "name": "KOTA SRINIVAS POOJARY",
+      "party": "BJP",
+      "age": 64,
+      "constituency": "Udupi Chikmagalur",
+      "type": "MP"
+    },
+    {
+      "name": "K. JAYAPRAKASH HEGDE",
+      "party": "INC",
+      "age": 71,
+      "constituency": "Udupi Chikmagalur",
+      "type": "MP"
+    }
+  ],
+  "Shimoga": [
+    {
+      "name": "BYRATHI RAGHAVENDRA",
+      "party": "BJP",
+      "age": 50,
+      "constituency": "Shimoga",
+      "type": "MP"
+    },
+    {
+      "name": "GEETHA SHIVARAJ KUNAR",
+      "party": "INC",
+      "age": 58,
+      "constituency": "Shimoga",
+      "type": "MP"
+    }
+  ],
+  "Dharwad": [
+    {
+      "name": "PRALHAD JOSHI",
+      "party": "BJP",
+      "age": 61,
+      "constituency": "Dharwad",
+      "type": "MP"
+    },
+    {
+      "name": "VINOD ASOOTI",
+      "party": "INC",
+      "age": 34,
+      "constituency": "Dharwad",
+      "type": "MP"
+    }
+  ],
+  "Belgaum": [
+    {
+      "name": "JAGADISH SHETTAR",
+      "party": "BJP",
+      "age": 68,
+      "constituency": "Belgaum",
+      "type": "MP"
+    },
+    {
+      "name": "MRINAL HEBBALKAR",
+      "party": "INC",
+      "age": 31,
+      "constituency": "Belgaum",
+      "type": "MP"
+    }
+  ],
+  "Bagalkot": [
+    {
+      "name": "P.C. GADDIGOUDAR",
+      "party": "BJP",
+      "age": 72,
+      "constituency": "Bagalkot",
+      "type": "MP"
+    },
+    {
+      "name": "SAMYUKTA PATIL",
+      "party": "INC",
+      "age": 30,
+      "constituency": "Bagalkot",
+      "type": "MP"
+    }
+  ],
+  "Bijapur": [
+    {
+      "name": "RAMESH JIGAJINAGI",
+      "party": "BJP",
+      "age": 71,
+      "constituency": "Bijapur",
+      "type": "MP"
+    },
+    {
+      "name": "H.R. ALGUR",
+      "party": "INC",
+      "age": 65,
+      "constituency": "Bijapur",
+      "type": "MP"
+    }
+  ],
+  "Gulbarga": [
+    {
+      "name": "UMESH G. JADHAV",
+      "party": "BJP",
+      "age": 61,
+      "constituency": "Gulbarga",
+      "type": "MP"
+    },
+    {
+      "name": "RADHAKRISHNA DODDAMANI",
+      "party": "INC",
+      "age": 62,
+      "constituency": "Gulbarga",
+      "type": "MP"
+    }
+  ],
+  "Bidar": [
+    {
+      "name": "BHAGWANTH KHUBA",
+      "party": "BJP",
+      "age": 57,
+      "constituency": "Bidar",
+      "type": "MP"
+    },
+    {
+      "name": "SAGAR KHANDRE",
+      "party": "INC",
+      "age": 26,
+      "constituency": "Bidar",
+      "type": "MP"
+    }
+  ],
+  "Koppal": [
+    {
+      "name": "BASAVARAJ KYAVATOR",
+      "party": "BJP",
+      "age": 48,
+      "constituency": "Koppal",
+      "type": "MP"
+    },
+    {
+      "name": "K. RAJASHEKHAR HITNAL",
+      "party": "INC",
+      "age": 45,
+      "constituency": "Koppal",
+      "type": "MP"
+    }
+  ],
+  "Bellary": [
+    {
+      "name": "B. SRIRAMULU",
+      "party": "BJP",
+      "age": 52,
+      "constituency": "Bellary",
+      "type": "MP"
+    },
+    {
+      "name": "E. TUKARAM",
+      "party": "INC",
+      "age": 57,
+      "constituency": "Bellary",
+      "type": "MP"
+    }
+  ],
+  "Haveri": [
+    {
+      "name": "BASAVARAJ BOMMAI",
+      "party": "BJP",
+      "age": 64,
+      "constituency": "Haveri",
+      "type": "MP"
+    },
+    {
+      "name": "ANANDSWAMY GADDADEVARMATH",
+      "party": "INC",
+      "age": 49,
+      "constituency": "Haveri",
+      "type": "MP"
+    }
+  ],
+  "Uttara Kannada": [
+    {
+      "name": "VISHWESHWAR HEGDE KAGERI",
+      "party": "BJP",
+      "age": 62,
+      "constituency": "Uttara Kannada",
+      "type": "MP"
+    },
+    {
+      "name": "ANJALI NIMBALKAR",
+      "party": "INC",
+      "age": 47,
+      "constituency": "Uttara Kannada",
+      "type": "MP"
+    }
+  ],
+  "Davanagere": [
+    {
+      "name": "GAYATHRI SIDDESHWARA",
+      "party": "BJP",
+      "age": 55,
+      "constituency": "Davanagere",
+      "type": "MP"
+    },
+    {
+      "name": "PRABHA MALLIKARJUN",
+      "party": "INC",
+      "age": 48,
+      "constituency": "Davanagere",
+      "type": "MP"
+    }
+  ],
+  "Chitradurga": [
+    {
+      "name": "GOVIND KARJOL",
+      "party": "BJP",
+      "age": 72,
+      "constituency": "Chitradurga",
+      "type": "MP"
+    },
+    {
+      "name": "CHANDRAPPA",
+      "party": "INC",
+      "age": 62,
+      "constituency": "Chitradurga",
+      "type": "MP"
+    }
+  ],
+  "Tumkur": [
+    {
+      "name": "V. SOMANNA",
+      "party": "BJP",
+      "age": 73,
+      "constituency": "Tumkur",
+      "type": "MP"
+    },
+    {
+      "name": "S.P. MUDDAHANUMEGOWDA",
+      "party": "INC",
+      "age": 69,
+      "constituency": "Tumkur",
+      "type": "MP"
+    }
+  ],
+  "Chikkaballapur": [
+    {
+      "name": "DR. K. SUDHAKAR",
+      "party": "BJP",
+      "age": 50,
+      "constituency": "Chikkaballapur",
+      "type": "MP"
+    },
+    {
+      "name": "M.S. RAKSHA RAMAIAH",
+      "party": "INC",
+      "age": 39,
+      "constituency": "Chikkaballapur",
+      "type": "MP"
+    }
+  ],
+  "Kolar": [
+    {
+      "name": "M. MALLLESH BABU",
+      "party": "JD(S)",
+      "age": 46,
+      "constituency": "Kolar",
+      "type": "MP"
+    },
+    {
+      "name": "K.V. GOWTHAM",
+      "party": "INC",
+      "age": 42,
+      "constituency": "Kolar",
+      "type": "MP"
+    }
+  ],
+  "Chikkodi": [
+    {
+      "name": "ANNA SAHEB JOLLE",
+      "party": "BJP",
+      "age": 62,
+      "constituency": "Chikkodi",
+      "type": "MP"
+    },
+    {
+      "name": "PRIYANKA JARKIHOLI",
+      "party": "INC",
+      "age": 27,
+      "constituency": "Chikkodi",
+      "type": "MP"
+    }
+  ],
+  "Raichur": [
+    {
+      "name": "RAJA AMARESHWARA NAYAK",
+      "party": "BJP",
+      "age": 67,
+      "constituency": "Raichur",
+      "type": "MP"
+    },
+    {
+      "name": "G. KUMAR NAIK",
+      "party": "INC",
+      "age": 60,
+      "constituency": "Raichur",
+      "type": "MP"
     }
   ]
 }

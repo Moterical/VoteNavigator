@@ -26,7 +26,7 @@ async function translateObject(obj, targetLang) {
     `;
 
     const model = genAI.getGenerativeModel({ 
-      model: "gemini-1.5-flash",
+      model: "gemini-2.5-flash",
       systemInstruction: 'You are a professional translator specialized in Indian regional languages (Kannada, Hindi). You output ONLY valid JSON.',
       generationConfig: {
         temperature: 0.1,

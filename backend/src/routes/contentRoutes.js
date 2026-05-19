@@ -70,4 +70,15 @@ router.get('/documents', async (req, res) => {
   }
 });
 
+// GET /api/content/rights
+router.get('/rights', async (req, res) => {
+  try {
+    const result = await db.query('SELECT * FROM voter_rights ORDER BY display_order ASC');
+    res.json({ rights: result.rows });
+  } catch (error) {
+    console.error('Voter Rights error:', error);
+    res.status(500).json({ error: 'Failed to fetch voter rights' });
+  }
+});
+
 module.exports = router;
